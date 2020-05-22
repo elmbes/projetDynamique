@@ -1,0 +1,25 @@
+23 avril 2020
+
+Pourriez-vous imaginer une base de données qui permette de faire un login.
+Inscription, s’identifier, message d’erreur, etc ... 
+
+Question / Réponse :
+
+Voici une question intéressante de Florence :
+
+Vous voulez qu’on fasse une ébauche d’une base de donnée dont il y a une table
+de type « membres » avec des champs qui pourrait permettre une identification, une inscription, ...?
+
+Si oui, je comprend pas pourquoi mettre des messages d’erreur dans une base de données.
+
+Voici ma réponse :
+
+Oui …
+Et tu as raison le message d’erreur fait partie du code et pas de la base de données.
+En théorie c’est logique.
+Mais …
+Si tu te rompes 3 fois ou 5 fois de login, ne te propose t’on pas généralement une solution alternative ?
+Est-ce que la base de données est utile pour gérer cela.
+C’est là-dessus que je voudrais vous réfléchissIez …
+Et je n’ai pas dit que les messages d’erreur devaient être dans la base de données.
+J’ai dit qu’il fallait tenir compte de ce process.

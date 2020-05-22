@@ -1,0 +1,13 @@
+Scripts – Projets Web Dynamiques – Panier sans Base de données
+Exercice du 31 mars, 1er et 2 avril 2020 
+
+
+a partir du 2 avril :
+D'autre part, pour ceux qui ont de l'avance, les prochaines consignes sont :
+- Créer un login en dur par exemple HANKAR / hankar . Tant que le login n'a pas été entré correctement, 
+    la liste des et le panier ne sont visible (même page, ou pages différentes selon votre choix)
+- Transformer le panier en un tableau à deux dimensions. Première dimension pour l'intitulé de l'article, 
+    deuxième dimension pour la quantité associée. A la commande d'un article, la quantité est 1 par défaut.
+    Dans le panier disposer d'un lien "+" et d'un lien "-". + pour ajouter une unité pour l'article correspondant, 
+    "-" pour diminuer d'une unité l'article concerné. Si la quantité est 0, elle reste à 0 en cas de sur le lien "-"
+     (pas de message d'erreur obligatoire)

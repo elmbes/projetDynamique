@@ -1,0 +1,60 @@
+body {
+    border: 30px solid black;
+    height: 98vh;
+    width: auto;
+}
+
+h1 {
+    text-align: center;
+}
+
+ul {
+    padding: 0px;
+    margin: 0px;
+    list-style-type: none;
+
+}
+
+#nav {
+    display: flex;
+    justify-content: space-around;
+}
+
+#nav li {
+    display: inline-block;
+    background-color: black;
+    color: white;
+    font-size: 20px;
+    padding: 5px 8px;
+    width: auto;
+}
+
+#nav li a:hover {
+    background-color: white;
+    color: black;
+}
+
+#nav li a {
+    display: block;
+    text-decoration: none;
+    color: white;
+}
+
+
+
+.allProduit{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+.produit1{
+    grid-row: 1/1;
+    grid-column: 1/2;
+}
+.produit2{
+    grid-row: 1/1;
+    grid-column: 2/3;
+}
+.produit3{
+    grid-row: 1/1;
+    grid-column: 3/4;
+}
