@@ -21,7 +21,7 @@
                 "image" => ["https://m.media-amazon.com/images/I/61q567sffOL._AC_UY218_ML3_.jpg", "https://m.media-amazon.com/images/I/51M8hGU3iOL._AC_UY218_ML3_.jpg
             "],
                 "prix" => [12, 34],
-                "tire" => ["Tablette 1", "Tablette 2", "Tablette 3", "Tablette 4", "Tablette 5", "Tablette 6", "Tablette 7", "Tablette 8", "Tablette 9", "Tablette 10"],
+                "tire" => ["Tablette 1", "Tablette 2"],
                 "titre" => ["Tablette 1", "Tablette 2"],
                 "id" => ["tab1", "tab2"]
             ];
