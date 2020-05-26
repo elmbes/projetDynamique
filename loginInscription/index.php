@@ -16,33 +16,42 @@ if (isset($_POST["envoyer"])) {
         $pass = sha1($_POST["pass"]);
 
         //retire tous les espaces etc..
-        
+
 
         $verifDonner = $bdd->prepare("SELECT * FROM membres where mail=? AND motdepasse=?");
-        $verifDonner->execute(array($mail,$pass));
+        $verifDonner->execute(array($mail, $pass));
         $membreExiste = $verifDonner->rowCount();
 
-        if($membreExiste == 1){
+        if ($membreExiste == 1) {
             $membreInfo = $verifDonner->fetch();
 
             $_SESSION['pseudo'] = $membreInfo["pseudo"];
             $_SESSION['mail'] = $membreInfo["mail"];
             $_SESSION['pass'] = $membreInfo["motdepasse"];
+            $_SESSION['numero'] = $membreInfo["numero"];
+            $_SESSION['adresse'] = $membreInfo["adresse"];
+            $_SESSION['dateNaissance'] = $membreInfo["dateNaissance"];
             
-            //header('Location : 127.0.0.1/page/membre.php');
-            echo "<h1 align=center> Espace membre</h1>";
-            echo "<h2 >bienvenue</h2> ". $_SESSION['pseudo'];
+            echo "<h1 align=center > Espace membre</h1>";
+            echo "<h2 >Bienvenue  " . $_SESSION['pseudo']."</h2>";
             echo '<br>';
             echo '<br>';
-            echo "Votre adresse mail ".$_SESSION['mail'];
-            echo '<br>';
-            echo "Votre mdp ". $_SESSION['pass'];
-            echo '<br>';
+            echo "Voici les informations que vous avvez forunis lors de l'inscription.";
+            echo "<hr>";
+            echo "Votre adresse mail : " . $_SESSION['mail'];
             
-        }else{
+            echo '<br>';
+            echo "Votre numéro : " . $_SESSION['numero'];
+            echo '<br>';
+            echo "Votre adresse : " . $_SESSION['adresse'];
+            echo '<br>';
+            echo "Votre date de naissace : " . $_SESSION['dateNaissance'];
+            echo '<br>';
+            echo "<hr>";
+
+        } else {
             $erreur = "Mail ou mot de passe incorect.";
         }
-
     } else {
         //nous allons stocker un message d'erreur dans une variable.
         $erreur = "Tous les champs doivent etre saisie..";
@@ -70,15 +79,16 @@ if (isset($_POST["envoyer"])) {
             <div class="form-group"><input class="form-control" type="text" name="mail" placeholder="Mail"></div>
             <div class="form-group"><input class="form-control" type="password" name="pass" placeholder="Password"></div>
             <div class="form-group"><button class="btn btn-primary btn-block" type="submit" name="envoyer">Log In</button></div>
-            <a class="forgot" href="pages/forget.html">mot de passe oublié</a>
             <?php
             //Condition pour afficher un message d'erreur.
-                if (isset($erreur)) {
+            if (isset($erreur)) {
                 echo '<br><font color="red">' . $erreur . '<font>';
-                }
+            }
             ?>
+            <a href="inscription.php">
+                Inscription
+            </a>
         </form>
-        <button class="btn btn-primary btn-block"  onclick= "window.location.href = 'inscription.php';">Inscription</button>
 
     </div>
 

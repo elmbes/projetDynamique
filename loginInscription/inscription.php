@@ -5,16 +5,20 @@ $bdd = new PDO('mysql:host=127.0.0.1;dbname=espace_membre', 'root', '');
 
 //série de test et de condtion pour le formulaire.
 if (isset($_POST["envoyer"])) {
-    if (!empty($_POST["pseudo"]) and !empty($_POST["mail"]) and !empty($_POST["mail2"]) and !empty($_POST["mdp"]) and !empty($_POST["mdp2"])) {
+    if (!empty($_POST["pseudo"]) and !empty($_POST["mail"]) and !empty($_POST["mail2"]) and !empty($_POST["mdp"]) and !empty($_POST["mdp2"]) and !empty($_POST["numero"]) ) {
+
         //htmlspecialchars permet de securiser les donner envoyer pour elever les caractere html pour eviter les injection de code.
         $pseudo = htmlspecialchars($_POST["pseudo"]);
         $mail = htmlspecialchars($_POST["mail"]);
         $mail2 = htmlspecialchars($_POST["mail2"]);
+        $adresse = htmlspecialchars($_POST["adresse"]);
+        $numero = $_POST["numero"];
+        $dateNaissance = htmlspecialchars($_POST["dateNaissance"]);
 
         //hasher le mot de passe pour ne pas le stocker en clair.
         $mdp = sha1($_POST["mdp"]);
         $mdp2 = sha1($_POST["mdp2"]);
-        
+
         //retire tous les espaces etc..
         $pseudolength = strlen($pseudo);
 
@@ -34,7 +38,7 @@ if (isset($_POST["envoyer"])) {
             //compte le nombre de resultat en ligne.
             $pseudoExiste = $reqPseudo->rowCount();
 
-            if($pseudoExiste == 0){
+            if ($pseudoExiste == 0) {
                 //Si le mail et le mail de comfirmation sont identique alors 
                 if ($mail == $mail2) {
                     //Si l'entrer est bien un email.
@@ -49,16 +53,24 @@ if (isset($_POST["envoyer"])) {
 
                         //Si le mail n'a pas ete utiliser alors continuer les verification sinon afficher un message d'erreur.
                         if ($mailExiste == 0) {
+
+                        /*************************************************************************************************************/
+                        /*************************************************************************************************************/
+                            //Confirmation des deux adresse mail.
+                            //SI OUI ENVOYE DES DONNES DANS LA BD
                             if ($mdp == $mdp2) {
                                 //préparation de la base de données avec requette.
-                                $insertMbr = $bdd->prepare("INSERT into membres(pseudo,mail,motdepasse) VALUES(?,?,?) ");
+                                $insertMbr = $bdd->prepare("INSERT into membres(pseudo,mail,motdepasse,numero,adresse,dateNaissance) VALUES(?,?,?,?,?,?) ");
                                 //execution de la requete.
-                                $insertMbr->execute(array($pseudo, $mail, $mdp));
+                                $insertMbr->execute(array($pseudo, $mail, $mdp,$numero,$adresse,$dateNaissance));
                                 //Message de confirmation.
                                 $erreur = "Votre compte a bien été crée.";
                             } else {
                                 $erreur = 'Vos mots de passe ne correspondent pas.';
                             }
+                        /*************************************************************************************************************/
+                        /*************************************************************************************************************/
+
                         } else {
                             $erreur = "Adresse mail deja utilisé ";
                         }
@@ -69,13 +81,12 @@ if (isset($_POST["envoyer"])) {
                 } else {
                     $erreur = "Vos adrresse mail ne correspondent pas.";
                 }
-            }else{
+            } else {
                 $erreur = "Le pseudo est déja utilisée.";
             }
         } else {
             $erreur = "Votre peudo ne peut pas dépasser plus de 255 caractéres.";
         }
-        
     } else {
         //nous allons stocker un message d'erreur dans une variable.
         $erreur = "Tous les champs doivent etre compeleter pour pouvoir s'inscrire.";
@@ -93,16 +104,18 @@ if (isset($_POST["envoyer"])) {
     <link rel="stylesheet" href="assets/css/Login-Form-Dark.css">
     <link rel="stylesheet" href="assets/css/styles.css">
     <style>
-        body{
+        body {
             background-image: url(assets/img/star-sky.jpg);
         }
-        table{
-            background-color:  white;
+
+        table {
+            background-color: white;
             border: 4px solid black;
             border-radius: 10px;
             margin: 10px;
         }
-        h2{
+
+        h2 {
             margin-top: 40px;
             color: white;
         }
@@ -156,8 +169,35 @@ if (isset($_POST["envoyer"])) {
                         <input type="password" name="mdp2" id="mdp2" placeholder="Confirmation votre mot de passe">
                     </td>
                 </tr>
-                <tr>
 
+                <tr>
+                    <td align="right">
+                        <label for="numero"> Votre GSM : </label>
+                    </td>
+                    <td>
+                        <input type="number" name="numero" id="numero" placeholder="votre numéro de GSM" >
+                    </td>
+                </tr>
+
+                <tr>
+                    <td align="right">
+                        <label for="adresse"> Adresse </label>
+                    </td>
+                    <td>
+                        <input type="text" name="adresse" id="adresse" placeholder="Votre adresse">
+                    </td>
+                </tr>
+
+                <tr>
+                    <td align="right">
+                        <label for="dateNaissance"> Date de naissance </label>
+                    </td>
+                    <td>
+                        <input type="date" name="dateNaissance" id="dateNaissance"> 
+                    </td>
+                </tr>
+
+                <tr>
                     <td align="center" colspan="2"><br>
                         <input type="submit" value="Inscription" name="envoyer">
                     </td>
