@@ -7,19 +7,19 @@ $bdd = new PDO('mysql:host=127.0.0.1;dbname=espace_membre', 'root', '');
 //série de test et de condtion pour le formulaire.
 if (isset($_POST["envoyer"])) {
     //Si les champs son vide affiche un message d'erreur sinon traite les données.
-    if (!empty($_POST["mail"]) and !empty($_POST["pass"])) {
+    if (!empty($_POST["pseudo"]) and !empty($_POST["pass"])) {
 
         //htmlspecialchars permet de securiser les donner envoyer pour elever les caractere html pour eviter les injection de code.
-        $mail = htmlspecialchars($_POST["mail"]);
-
+        //$mail = htmlspecialchars($_POST["mail"]);
+        $pseudo = htmlspecialchars($_POST["pseudo"]);
         //hasher le mot de passe pour ne pas le stocker en clair.
         $pass = sha1($_POST["pass"]);
 
         //retire tous les espaces etc..
 
 
-        $verifDonner = $bdd->prepare("SELECT * FROM membres where mail=? AND motdepasse=?");
-        $verifDonner->execute(array($mail, $pass));
+        $verifDonner = $bdd->prepare("SELECT * FROM membres where pseudo=? AND motdepasse=?");
+        $verifDonner->execute(array($pseudo, $pass));
         $membreExiste = $verifDonner->rowCount();
 
         if ($membreExiste == 1) {
@@ -36,7 +36,7 @@ if (isset($_POST["envoyer"])) {
             echo "<h2 >Bienvenue  " . $_SESSION['pseudo']."</h2>";
             echo '<br>';
             echo '<br>';
-            echo "Voici les informations que vous avvez forunis lors de l'inscription.";
+            echo "Voici les informations que vous avez forunis lors de l'inscription.";
             echo "<hr>";
             echo "Votre adresse mail : " . $_SESSION['mail'];
             
@@ -50,13 +50,14 @@ if (isset($_POST["envoyer"])) {
             echo "<hr>";
 
         } else {
-            $erreur = "Mail ou mot de passe incorect.";
+            $erreur = "Pseudo ou mot de passe incorect.";
         }
     } else {
         //nous allons stocker un message d'erreur dans une variable.
-        $erreur = "Tous les champs doivent etre saisie..";
+        $erreur = "Tous les champs doivent etre saisie.";
     }
 }
+//<div class="form-group"><input class="form-control" type="text" name="mail" placeholder="Mail"></div>
 ?>
 
 <html>
@@ -76,7 +77,7 @@ if (isset($_POST["envoyer"])) {
         <form method="post" action="">
             <h2 class="sr-only">Connexion</h2>
             <div class="illustration"><i class="icon ion-ios-locked-outline"></i></div>
-            <div class="form-group"><input class="form-control" type="text" name="mail" placeholder="Mail"></div>
+            <div class="form-group"><input class="form-control" type="text" name="pseudo" placeholder="Pseudo"></div>
             <div class="form-group"><input class="form-control" type="password" name="pass" placeholder="Password"></div>
             <div class="form-group"><button class="btn btn-primary btn-block" type="submit" name="envoyer">Log In</button></div>
             <?php

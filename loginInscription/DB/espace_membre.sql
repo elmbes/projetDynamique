@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le :  mar. 26 mai 2020 à 14:54
+-- Généré le :  mer. 27 mai 2020 à 21:39
 -- Version du serveur :  10.4.10-MariaDB
 -- Version de PHP :  7.3.12
 
@@ -46,7 +46,8 @@ CREATE TABLE IF NOT EXISTS `membres` (
 INSERT INTO `membres` (`pseudo`, `mail`, `motdepasse`, `numero`, `adresse`, `dateNaissance`) VALUES
 ('jp', 'JP@test.com', '0f41a0b3b760b54df703e860e40fef1c388ed2c5', 0, '', '0000-00-00'),
 ('el', 'elamrani@gmail.com', '4f1ea4f09db2aaafb0a92c0b9e57751121ed6647', 485355, 'Re', '1999-01-04'),
-('gggh', 'test4@gmail.com', '7bec8b89f872b23251c7928cd7b0374cfd41dc89', 485383680, 'Rue de la', '1953-01-05');
+('gggh', 'test4@gmail.com', '7bec8b89f872b23251c7928cd7b0374cfd41dc89', 485383680, 'Rue de la', '1953-01-05'),
+('elm', 'elm@gmail.com', '4a07c168f5f0ba03440f1ec2fd9892a7b005f2da', 485236825, '', '2020-05-13');
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
