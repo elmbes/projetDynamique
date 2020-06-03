@@ -1,8 +1,8 @@
 <nav>
         <ul id="nav">
-            <li><a href="">Accueil</a></li>
-            <li><a href="pages/connexion.html">Connexion</a></li>
-            <li><a href="pages/inscription.html">Inscription</a></li>
-            <li><a href="pages/panier.html">Panier</a></li>
+            <li><a href="<?php echo HSRECUP;?>index.php">Accueil</a></li>
+            <li><a href="<?php echo HSRECUP;?>pages/connexion.php">Connexion</a></li>
+            <li><a href="<?php echo HSRECUP;?>pages/inscription.php">Inscription</a></li>
+            <li><a href="<?php echo HSRECUP;?>pages/panier.php">Panier</a></li>
         </ul>
-    </nav>
+</nav>

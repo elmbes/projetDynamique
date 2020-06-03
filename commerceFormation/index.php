@@ -1,6 +1,8 @@
 <?php 
-    require_once("inc/haut.inc.php");
+    require_once("inc/constante.php");
+    require_once("inc/header.inc.php");
     require_once("inc/menu.inc.php");
+
 ?>
 
     <main>
@@ -62,5 +64,5 @@
 
     
 <?php 
-    require_once("inc/bas.inc.php");
+    require_once("inc/footer.inc.php");
 ?>
